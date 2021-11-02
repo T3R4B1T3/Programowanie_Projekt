@@ -1,8 +1,7 @@
 <?php
 class Napoje extends Kategoria
 {
-    public $pieniazki;
-    public $num;
+
     public function Connect()
     {
         try {
@@ -21,17 +20,5 @@ class Napoje extends Kategoria
         $this->connect = null;
     }
 
-//    public function odczyt_Zamowienia()
-//    {
-//        print 'Wrzuć pieniądze:  '.PHP_EOL;
-//        $money = readline();
-//        $pieniazkiInt = $this->pieniazki;
-//        $reszta = ($money - $pieniazkiInt);
-//        print "Pozostało: ".$reszta;
-//        print 'Pieniądze: '.$money."zł".PHP_EOL;
-//        print 'Podaj numer produktu który chcesz kupic: '.PHP_EOL;
-//        $this->num = readline();
-//
-//
-//    }
+
 }
