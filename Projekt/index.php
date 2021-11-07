@@ -1,6 +1,6 @@
 <?php
 
-include __DIR__."/vendor/autoload.php";
+include __DIR__ . "/vendor/autoload.php";
 
-$run = new \src\App();
-$run->run();
+$menu = new \src\Menu();
+$menu->choosingMenu();

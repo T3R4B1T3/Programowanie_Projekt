@@ -26,28 +26,29 @@ class Zamowienie
 
     public function odczyt_Zamowienia()
     {
-        print 'Wrzuć pieniądze:  ' . PHP_EOL;
+        echo "\033[35mWrzuć pieniądze:\033[0m" . PHP_EOL;
         $this->sum = readline();
         if (!is_numeric($this->sum)) {
-            exit(print 'ERROR! Wrzuć monete');
+            exit("\033[31mERROR! Wrzuć monete\033[0m");
         }
-        print 'Wybierz produkt wpisując numer: ' . PHP_EOL;
+        echo "\033[35mWybierz produkt wpisując numer:\033[0m" . PHP_EOL;
         $this->produkt = readline();
-        print 'Wybrałes: ' . PHP_EOL;
+        echo "\033[35mWybrałes:\033[0m" . PHP_EOL;
     }
 
     public function calculations()
     {
-        $rest = ($this->sum - $this->money1);
+        (float)($rest = ($this->sum - $this->money1));
+
 
         if ($rest == 0) {
-            print 'Brak reszty' . PHP_EOL;
-            print 'Do widzenia :) ' . PHP_EOL;
+            echo "\033[35mBrak reszty\033[0m" . PHP_EOL;
+            echo "\033[35mDo widzenia :)\033[0m" . PHP_EOL;
         } elseif ($rest > 0) {
-            print 'Reszta: ' . $rest . 'zl' . PHP_EOL;
+            echo "\033[35mReszta: {$rest} zl" . PHP_EOL;
         } else {
-            print'Zbyt mała kwota na ten produkt' . PHP_EOL;
-            print 'Wybierz jescze raz: ' . PHP_EOL . PHP_EOL;
+            echo "\033[31mZbyt mała kwota na ten produkt\033[0m" . PHP_EOL;
+            echo "\033[35mWybierz jescze raz:\033[0m" . PHP_EOL;
 
             $poloacznie = new Polaczenie($this->category);
             $poloacznie->Connect();
@@ -68,11 +69,11 @@ class Zamowienie
             $pytanie->execute();
 
             while ($row = $pytanie->fetch()) {
-                print $row['ID'] . " " . $row['Marka'] . " " . $row['Pojemność'] . " " . $row['Cena'] . "zł" . PHP_EOL;
+                echo "\033[36m{$row['ID']} {$row['Marka']} {$row['Pojemność']} {$row['Cena']} zł\033[0m" . PHP_EOL;
                 $this->money1 = $row['Cena'];
             }
         } catch (PDOException $a) {
-            print 'Błąd połączenia2: ' . $a->getMessage() . PHP_EOL;
+            echo "\033[31mBłąd połączenia2:\033[0m" . $a->getMessage() . PHP_EOL;
         }
         $this->connect = null;
     }
